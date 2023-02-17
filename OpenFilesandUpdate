@@ -1,0 +1,41 @@
+@echo off
+title JA2021csv
+::-------------------------------------------
+::Secuencia que revisa los archivos de excel
+setlocal enableextensions
+:inicio
+:inicio_2
+set "archivos="0
+for %%x in (C:\Users\\Documents\\*.csv) do set /a archivos+=1
+echo %archivos%
+::-------------------------------------------
+::Revisamos si los archivos son 4
+if %archivos%==4 (goto mover) else (timeout 10)
+goto inicio
+::-------------------------------------------
+::Comienza la secuencia de mover los archivos
+:mover
+cd C:\Users\tuga
+DEL /F/Q/S *.* > NUL
+cd C:\Users\reclutas
+DEL /F/Q/S *.* > NUL
+cd C:\Users\ordenes
+DEL /F/Q/S *.* > NUL
+cd C:\Users\josec\skus
+DEL /F/Q/S *.* > NUL
+
+move C:\Users\KF06050A.CSV C:\Users\reclutas
+move C:\Users\KFW6056A*.CSV C:\Users\tuga
+move C:\Users\KFW0040A*.CSV C:\Users\ordenes
+move C:\Users\KFW0516A*.csv C:\Users\skus
+
+cd C:\Users\tuga
+ren *.CSV KFW6056A.CSV
+cd C:\Users\ordenes
+ren *.CSV KFW0040A.CSV
+cd C:\Users\skus
+ren *.csv KFW0516A.csv
+
+START excel.exe /r "C:\Users\BaseDatos\diario_bullDog.xlsm"
+endlocal
+exit
