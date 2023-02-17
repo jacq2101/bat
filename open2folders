@@ -1,0 +1,3 @@
+@echo off
+start explorer /e,/root,C:\Users\jconst\Desktop
+start explorer /e,/root,Q:\kfdownloads
